@@ -1,25 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { FormDinamic } from "./components/FormDinamic";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  const atrsForm = [
+    {
+      field: "input",
+      label: "Nombres",
+      props: {
+        name: "usuario_nombres",
+        type: "text",
+        placeholder: "Nombres del Usuario",
+      },
+      rules: ["required"],
+    },
+    {
+      field: "input",
+      label: "Apellidos",
+      props: {
+        name: "usuario_apellidos",
+        type: "text",
+        placeholder: "Apellidos del Usuario",
+      },
+      rules: ["required"],
+    },
+  ];
+
+  return <FormDinamic atrsForm={atrsForm} />;
 }
 
 export default App;

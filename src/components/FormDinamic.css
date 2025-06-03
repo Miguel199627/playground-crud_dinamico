@@ -1,0 +1,45 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+main,
+form {
+  width: 100%;
+}
+
+.grid {
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 10px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.field input {
+  padding: 0.5rem 1rem;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  border-radius: 0.5rem;
+  outline: none;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.field input:focus {
+  border-color: #3b82f6; /* azul tailwind */
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+}
+
+.field span {
+  color: red;
+}
