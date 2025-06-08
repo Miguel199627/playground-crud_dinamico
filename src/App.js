@@ -1,5 +1,5 @@
 import "./App.css";
-import { FormDinamic } from "./components/FormDinamic";
+import { FormDinamic } from "./components/form-dinamic/FormDinamic";
 
 function App() {
   const atrsForm = [
@@ -20,6 +20,20 @@ function App() {
         name: "usuario_apellidos",
         type: "text",
         placeholder: "Apellidos del Usuario",
+      },
+      rules: ["required"],
+    },
+    {
+      field: "select",
+      label: "Perfil",
+      props: {
+        name: "usuario_perfil",
+        placeholder: "Seleccione un perfil",
+        // options: [
+        //   { value: 1, name: "Administrador" },
+        //   { value: 2, name: "Cliente" },
+        // ],
+        lov: "perfil",
       },
       rules: ["required"],
     },
