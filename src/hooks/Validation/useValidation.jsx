@@ -7,25 +7,26 @@ export function useValidation(initialValuesFormFields) {
   const validateForm = (value, rules) => {
     if (!rules || rules.length === 0) return [];
 
-    return rules.reduce((errors, rule) => {
-      if (!/^[a-zA-Z]+(:.+)?$/.test(rule)) {
+    return rules.reduce((errors, strRule) => {
+      if (!/^[a-zA-Z]+(:.+)?$/.test(strRule)) {
         console.error(
           "Debe respetarse la estructura de las reglas de validación, la cual puede ser del tipo rule o rule:value"
         );
-        return errors;
+        return [];
       }
 
-      const ruleArr = rule.split(":");
-      const param = ruleArr.length === 2 ? ruleArr[1] : null;
+      const [arrRule, arrParam] = strRule.split(":");
 
-      errors = configRules.find(
+      const error = configRules.find(
         ({ rule, condition, requiredParam }) =>
-          ruleArr[0] === rule &&
-          condition({ value, param }) &&
-          validateParams(requiredParam, param)
+          arrRule === rule &&
+          condition({ value, arrParam }) &&
+          validateParams(requiredParam, arrParam)
       );
 
-      return errors;
+      if (error) errors.push({ ...error });
+
+      return errors || [];
     }, []);
   };
 

@@ -11,8 +11,8 @@ export const configRules = [
     rule: "min",
     msj: "Ha superado la cantidad de caracteres maximos",
     requiredParam: true,
-    condition: ({ value, params }) => {
-      return value.length > Number(params);
+    condition: ({ value, arrParam }) => {
+      return value.length > Number(arrParam);
     },
   },
 ];

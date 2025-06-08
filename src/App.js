@@ -21,7 +21,7 @@ function App() {
         type: "text",
         placeholder: "Apellidos del Usuario",
       },
-      rules: ["required"],
+      rules: ["required", "min:5"],
     },
     {
       field: "select",

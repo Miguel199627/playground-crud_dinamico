@@ -17,10 +17,10 @@ export const useForm = (formBuilder) => {
     },
     {}
   );
+  const [values, setValues] = useState(initialValuesFormFields);
   const [errsForm, setFormErrs, validateForm] = useValidation(
     initialValuesFormFields
   );
-  const [values, setValues] = useState(initialValuesFormFields);
   const [selectOptions] = useSelect(selectsField);
 
   const handleChange = (event) => {

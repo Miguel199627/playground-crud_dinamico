@@ -8,7 +8,7 @@ export function FormDinamic({ atrsForm }) {
     return acc;
   }, {});
 
-  const [errs, getFieldProps, selectOptions] = useForm(formFields);
+  const [errsForm, getFieldProps, selectOptions] = useForm(formFields);
 
   return (
     <div className="page">
@@ -24,8 +24,8 @@ export function FormDinamic({ atrsForm }) {
                   <div className="field" key={props.name}>
                     <label>{label}</label>
                     <input {...getFieldProps(props)} />
-                    {errs[props.name] &&
-                      errs[props.name].map(({ rule, msj }) => {
+                    {errsForm[props.name] &&
+                      errsForm[props.name].map(({ rule, msj }) => {
                         return <span key={`${props.name}_${rule}`}>{msj}</span>;
                       })}
                   </div>
@@ -59,8 +59,8 @@ export function FormDinamic({ atrsForm }) {
                         </div>
                       </div>
                     )}
-                    {errs[props.name] &&
-                      errs[props.name].map(({ rule, msj }) => {
+                    {errsForm[props.name] &&
+                      errsForm[props.name].map(({ rule, msj }) => {
                         return <span key={`${props.name}_${rule}`}>{msj}</span>;
                       })}
                   </div>
