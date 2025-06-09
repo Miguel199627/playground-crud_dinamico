@@ -1,5 +1,7 @@
 import { useForm } from "../../hooks/useForm";
 import "./FormDinamic.css";
+import { Input } from "../input/Input";
+import { Select } from "../select/Select";
 
 export function FormDinamic({ atrsForm }) {
   const formFields = atrsForm.reduce((acc, { field, props, rules }) => {
@@ -21,49 +23,26 @@ export function FormDinamic({ atrsForm }) {
             {atrsForm.map(({ field, label, props }) => {
               if (field === "input")
                 return (
-                  <div className="field" key={props.name}>
-                    <label>{label}</label>
-                    <input {...getFieldProps(props)} />
-                    {errsForm[props.name] &&
-                      errsForm[props.name].map(({ rule, msj }) => {
-                        return <span key={`${props.name}_${rule}`}>{msj}</span>;
-                      })}
-                  </div>
+                  <>
+                    <Input
+                      props={props}
+                      label={label}
+                      getFieldProps={getFieldProps}
+                      errsForm={errsForm}
+                    />
+                  </>
                 );
               else if (field === "select")
                 return (
-                  <div className="field" key={props.name}>
-                    <label>{label}</label>
-                    <select {...getFieldProps(props)}>
-                      <option value="">
-                        {props.placeholder || "Seleccione una opción"}
-                      </option>
-                      {!selectOptions[props.name]?.loading &&
-                        selectOptions[props.name]?.options.map(
-                          ({ value, name }) => {
-                            return (
-                              <option
-                                value={value}
-                                key={`${props.name}_option_${value}`}
-                              >
-                                {name}
-                              </option>
-                            );
-                          }
-                        )}
-                    </select>
-                    {selectOptions[props.name]?.loading && (
-                      <div className="loader-container">
-                        <div className="loader-bar-container">
-                          <div className="loader-bar"></div>
-                        </div>
-                      </div>
-                    )}
-                    {errsForm[props.name] &&
-                      errsForm[props.name].map(({ rule, msj }) => {
-                        return <span key={`${props.name}_${rule}`}>{msj}</span>;
-                      })}
-                  </div>
+                  <>
+                    <Select
+                      props={props}
+                      label={label}
+                      getFieldProps={getFieldProps}
+                      selectOptions={selectOptions}
+                      errsForm={errsForm}
+                    />
+                  </>
                 );
             })}
           </div>
